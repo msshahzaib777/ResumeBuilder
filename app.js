@@ -2,11 +2,9 @@ const express = require('express')
 const app = express()
 const port = 8080
 
-app.get('/', (req, res) => {
+const routes = require('./routes/routes.js');
 
-  res.send('<h1>Hello World!<h1>')
-
-});
+app.use(routes);
 
 app.listen(port, () => {
   console.log(`Resume Builder Application is listening at http://localhost:${port}`);
