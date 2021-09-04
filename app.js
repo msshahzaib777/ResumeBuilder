@@ -3,9 +3,11 @@ const app = express()
 const port = 8080
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
+  res.send('<h1>Hello World!<h1>')
+
+});
 
 app.listen(port, () => {
-  console.log(`Resume Application is listening at http://localhost:${port}`)
-})
+  console.log(`Resume Builder Application is listening at http://localhost:${port}`);
+});
