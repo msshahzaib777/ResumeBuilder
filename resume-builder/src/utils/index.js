@@ -1,0 +1,30 @@
+export default {
+  sections: [
+    "Personal Info",
+    "ProfilePic",
+    "Aim/Objective",
+    "Education",
+    "Experience",
+    "Project",
+    "Publication",
+    "Certification",
+    "Skill",
+    "Language",
+    "Interest",
+  ],
+  defaults: ["Personal Info", "Education"],
+  Resume: {
+    StateVisibility: [],
+    PersonalInfo: [],
+    Education: [],
+    Experiance: [],
+    Project: [],
+    Certificattion: [],
+    Publication: [],
+    Interest: [],
+    Skill: [],
+    Language: [],
+    ProfilePic: {},
+  },
+
+};
