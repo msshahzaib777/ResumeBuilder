@@ -25,18 +25,6 @@
     </div>
     <div class="form-control">
       <MDBInput
-        id="email"
-        v-model="email"
-        name="email"
-        type="email"
-        label="Email"
-        required
-        @blur="validateEmail"
-      />
-      <span style="color: red" class="form-control">{{ error["email"] }}</span>
-    </div>
-    <div class="form-control">
-      <MDBInput
         id="grade"
         label="Grade"
         v-model="grade"
