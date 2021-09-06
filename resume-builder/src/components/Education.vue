@@ -38,88 +38,82 @@
     <div class="form-control">
       <MDBInput
         id="grade"
-        label="Phone No."
+        label="Grade"
         v-model="grade"
         type="tel"
         name="grade"
       />
-      <span style="color: red" class="form-control">{{
-        error["grade"]
-      }}</span>
+      <span style="color: red" class="form-control">{{ error["grade"] }}</span>
     </div>
     <div class="form-control">
-      <MDBInput
-        id="links"
-        label="links"
-        v-model="links"
-        type="text"
-        name="links"
-      />
-      <span style="color: red" class="form-control">{{ error["links"] }}</span>
-      <div :v-if="links.split(' ').length > 1">
-        <MDBBadge
-          v-for="link in links.split(' ')"
-          :key="link"
-          style="background-color: #111d4a; padding: 0.4%"
-          class="ms-2"
-          pill
-          >{{ link }}</MDBBadge
-        >
-      </div>
+      <input type="checkbox" id="current" value="Current" v-model="current" />
+      <label class="mx-2" for="current">Current</label>
     </div>
-    <div class="form-control">
-      <MDBTextarea
-        id="objective"
-        label="Objective"
-        rows="3"
-        v-model="objective"
-      ></MDBTextarea>
-      <span style="color: red" class="form-control">{{
-        error["objective"]
-      }}</span>
-    </div>
+    <MDBRow class="justify-content-evenly">
+      <MDBCol col="6">
+        <div class="form-control">
+          <label>Start Date</label>
+          <Datepicker v-model="startDate" />
+          <span style="color: red" class="form-control">{{
+            error["startDate"]
+          }}</span>
+        </div>
+      </MDBCol>
+      <MDBCol col="6"
+        ><div class="form-control"  v-if="!current">
+          <label>End Date</label>
+          <Datepicker v-model="endDate" />
+          <span style="color: red" class="form-control">{{
+            error["endDate"]
+          }}</span>
+        </div></MDBCol
+      >
+    </MDBRow>
     <div class="pb-5 px-5">
       <MDBBtn
         style="display: block; margin-left: auto; margin-right: 5%"
         class="btn-custom"
-        @click="setPersonalInfo"
-        >Next</MDBBtn
+        @click="setEducation"
+        >Add</MDBBtn
       >
     </div>
   </div>
 </template>
 
 <script>
-import { MDBInput, MDBBadge, MDBTextarea, MDBBtn } from "mdb-vue-ui-kit";
+import { MDBInput, MDBBtn, MDBRow, MDBCol } from "mdb-vue-ui-kit";
+import Datepicker from "vue3-datepicker";
 
 export default {
   name: "education-form",
   components: {
     MDBInput,
-    MDBBadge,
-    MDBTextarea,
     MDBBtn,
+    MDBRow,
+    MDBCol,
+    Datepicker,
   },
   data: () => {
     return {
       error: {},
-      degree: "",
-      schoolName: "",
-      grade: "",
-      startDate: "",
-      endDate: "",
-      current: "",
-      email: null,
-      links: "",
-      objective: null,
-      profilePic: null,
+      id: null,
+      degree: null,
+      schoolName: null,
+      grade: null,
+      startDate: null,
+      endDate: null,
+      current: null,
     };
   },
   methods: {
-    setPersonalInfo() {
+    setEducation() {
       if (!this.checkForm()) {
-        console.log("Setting PersonalInfo");
-        this.$store.commit("UPDATE_PERSONAL", {
+        console.log("Setting setEducation");
+        this.$store.commit("UPDATE_EDUCATION", {
+          id:
+            this.id == null
+              ? this.$store.state.Resume.Education.length
+              : this.id,
           degree: this.degree,
           schoolName: this.schoolName,
           grade: this.grade,
@@ -143,36 +137,14 @@ export default {
           : null;
       this.grade =
         this.error["grade"] == "" || this.error["grade"] == null
-          ? "Please enter a valid Phone No."
+          ? "Please enter your Grades"
           : null;
-      this.links =
-        this.error["links"] == "" || this.error["links"] == null
-          ? "Please enter a links"
-          : null;
-      this.error["image"] =
-        this.profilePic == null ? "Please upload an Image" : null;
-      this.error["email"] =
-        /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/.test(
-          this.email
-        )
-          ? "Please enter a valid email address"
-          : null;
-
       for (const property in this.error) {
         if (this.error[property] != null) {
           return false;
         }
       }
       return true;
-    },
-    uploadImage(e) {
-      const image = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(image);
-      reader.onload = (e) => {
-        this.profilePic = e.target.result;
-        console.log(this.profilePic);
-      };
     },
   },
 };
@@ -189,5 +161,10 @@ export default {
   background-color: #111d4a;
   color: #fff8f0;
   align-self: flex-end;
+}
+</style>
+<style>
+.v3dp__datepicker input {
+  width: 100%;
 }
 </style>

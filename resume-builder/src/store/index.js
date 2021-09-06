@@ -58,6 +58,12 @@ export default createStore({
     UPDATE_PERSONAL(state, personalInfo) {
       state.Resume.PersonalInfo = personalInfo;
     },
+    UPDATE_EDUCATION(state, education) {
+      const _education = state.Educations.find(
+        (item) => item.id === education.id
+      );
+      Object.assign(_education, education);
+    },
   },
   actions: {},
   modules: {},
