@@ -1,17 +1,13 @@
 <template>
   <div class="home">
     <Header class="header" />
-    <!-- <SelectSection /> -->
-    <!-- <PersonalInfoForm /> -->
-    <Education />
+    <SelectSection />
   </div>
 </template>
 
 <script>
 import Header from "../components/header";
-// import SelectSection from "../components/selectSections";
-// import PersonalInfoForm from "../components/PersoanlInfoForm.vue";
-import Education from "../components/Education.vue";
+import SelectSection from "../components/selectSections";
 
 export default {
   name: "Home",
@@ -20,9 +16,7 @@ export default {
   },
   components: {
     Header,
-    // SelectSection,
-    // PersonalInfoForm,
-    Education,
+    SelectSection,
   },
 };
 </script>

@@ -1,15 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
 import SelectSelection from "../../src/components/selectSections.vue";
-// import utils from "../utils/index";
-import { MDBBtn } from "mdb-vue-ui-kit";
 
 describe("SelectSection.vue", () => {
   beforeEach(() => {
     const wrapper = shallowMount(SelectSelection, {
       name: "select-section",
-      global: {
-        stubs: { MDBBtn },
-      },
       data: () => {
         return {
           SectionsVisiblity: [
