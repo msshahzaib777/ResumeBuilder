@@ -5,24 +5,34 @@
       <li v-for="item in SectionsVisiblity" :key="item">
         <input
           type="checkbox"
-          :id="index"
+          :id="item.section"
           :value="item.section"
           v-model="item.visbility"
           :disabled="defaults.includes(item.section) ? true : false"
         />
-        <label class="mx-2" :for="index">{{ item.section }}</label>
+        <label class="mx-2" :for="item.section">{{ item.section }}</label>
       </li>
     </ol>
+    <div class="pb-5 px-5">
+      <MDBBtn
+        style="display: block; margin-left: auto; margin-right: 5%"
+        class="btn-custom"
+        @click="setVisibleSections"
+        >Next</MDBBtn
+      >
+    </div>
   </div>
 </template>
 
 <script>
 import utils from "../utils/index";
+import { MDBBtn } from "mdb-vue-ui-kit";
 export default {
   name: "select-section",
-  props: {
-    msg: String,
+  components: {
+    MDBBtn,
   },
+
   data: () => {
     return {
       SectionsVisiblity: utils.sections.map((x) => {
@@ -33,6 +43,13 @@ export default {
       }),
       defaults: utils.defaults,
     };
+  },
+  methods: {
+    setVisibleSections() {
+      console.log("Setting Visible Sections");
+      this.$store.commit("UPDATE_SECTIONS", this.SectionsVisiblity);
+      console.log(JSON.stringify(this.$store.state.Resume.SectionsVisiblity));
+    },
   },
 };
 </script>
@@ -48,5 +65,10 @@ ol {
 h1 {
   color: #1e1e24;
   text-align: "left";
+}
+.btn-custom {
+  background-color: #111d4a;
+  color: #fff8f0;
+  align-self: flex-end;
 }
 </style>

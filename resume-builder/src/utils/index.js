@@ -13,18 +13,4 @@ export default {
     "Interest",
   ],
   defaults: ["Personal Info", "Education"],
-  Resume: {
-    StateVisibility: [],
-    PersonalInfo: [],
-    Education: [],
-    Experiance: [],
-    Project: [],
-    Certificattion: [],
-    Publication: [],
-    Interest: [],
-    Skill: [],
-    Language: [],
-    ProfilePic: {},
-  },
-
 };

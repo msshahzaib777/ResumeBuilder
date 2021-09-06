@@ -1,21 +1,15 @@
 <template>
   <div class="home">
     <Header class="header" />
-    <SelectSection />
-    <div class="pb-5 px-5">
-      <MDBBtn
-        style="display: block; margin-left: auto; margin-right: 5%"
-        class="btn-custom"
-        >Next</MDBBtn
-      >
-    </div>
+    <!-- <SelectSection /> -->
+    <PersonalInfoForm />
   </div>
 </template>
 
 <script>
 import Header from "../components/header";
-import SelectSection from "../components/selectSections";
-import { MDBBtn } from "mdb-vue-ui-kit";
+// import SelectSection from "../components/selectSections";
+import PersonalInfoForm from "../components/PersoanlInfoForm.vue";
 
 export default {
   name: "Home",
@@ -24,18 +18,13 @@ export default {
   },
   components: {
     Header,
-    SelectSection,
-    MDBBtn,
+    // SelectSection,
+    PersonalInfoForm,
   },
 };
 </script>
 
 <style scoped>
-.btn-custom {
-  background-color: #111d4a;
-  color: #fff8f0;
-  align-self: flex-end;
-}
 .home {
   background: #fff8f0 !important;
 }
